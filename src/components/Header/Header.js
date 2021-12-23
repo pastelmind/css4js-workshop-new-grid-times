@@ -29,7 +29,21 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
+        <MainHeaderActionGroupLeft>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </MainHeaderActionGroupLeft>
         <Logo />
+        <MainHeaderActionGroupRight>
+          <SubscribeWidget>
+            <Button>Subscribe</Button>
+            <AlreadySubscribedLink>Already a subscriber?</AlreadySubscribedLink>
+          </SubscribeWidget>
+        </MainHeaderActionGroupRight>
       </MainHeader>
     </header>
   );
@@ -39,6 +53,10 @@ const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.desktopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -65,6 +83,40 @@ const MainHeader = styled(MaxWidthWrapper)`
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.desktopAndUp} {
+    justify-content: space-between;
+    align-items: baseline;
+  }
+`;
+
+const MainHeaderActionGroup = styled(ActionGroup)`
+  flex: 1;
+  display: flex;
+
+  @media not all and ${QUERIES.desktopAndUp} {
+    display: none;
+  }
+`;
+
+const MainHeaderActionGroupLeft = styled(MainHeaderActionGroup)`
+  justify-content: flex-start;
+`;
+
+const MainHeaderActionGroupRight = styled(MainHeaderActionGroup)`
+  justify-content: flex-end;
+`;
+
+const SubscribeWidget = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+`;
+
+const AlreadySubscribedLink = styled.a`
+  font-style: italic;
+  text-decoration: underline;
 `;
 
 export default Header;
